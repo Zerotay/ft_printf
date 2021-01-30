@@ -65,24 +65,6 @@ int	sort(t_cfc cfc, int val, int len)
 	return (cfc.width);
 }
 
-int zero(t_cfc cfc, int val, int len)
-{
-	char	*buf;
-	char	*temp;
-	int		i;
-
-	i = val < 0 ? cfc.width - len + 1 : cfc.width - len;
-	if (!(buf = ft_calloc(cfc.width + 1, 1)) || !(temp = ft_itoa(val)))
-		return (-1);
-	ft_memset(buf, '0', cfc.width);
-	buf[0] = val >= 0 ? buf[0] : '-';
-	ft_strlcpy(buf + i, (val < 0 ? temp + 1 : temp), len + 1);
-	write(1, buf, ft_strlen(buf));
-	free(buf);
-	free(temp);
-	return (cfc.width);
-}
-
 int	basic(t_cfc cfc, int val, int len)
 {
 	char	*buf;
@@ -102,6 +84,26 @@ int	basic(t_cfc cfc, int val, int len)
 	i = cfc.width - len;
 	ft_strlcpy(buf + i, temp, len + 1);
 	buf[i] = ((val < 0) && (cfc.precision >= len)) ? '0' : buf[i];
+	write(1, buf, ft_strlen(buf));
+	free(buf);
+	free(temp);
+	return (cfc.width);
+}
+
+int zero(t_cfc cfc, int val, int len)
+{
+	char	*buf;
+	char	*temp;
+	int		i;
+
+	if(cfc.onlyfors && cfc.precision >= 0)
+		return (basic(cfc, val, len));
+	i = val < 0 ? cfc.width - len + 1 : cfc.width - len;
+	if (!(buf = ft_calloc(cfc.width + 1, 1)) || !(temp = ft_itoa(val)))
+		return (-1);
+	ft_memset(buf, '0', cfc.width);
+	buf[0] = val >= 0 ? buf[0] : '-';
+	ft_strlcpy(buf + i, (val < 0 ? temp + 1 : temp), len + 1);
 	write(1, buf, ft_strlen(buf));
 	free(buf);
 	free(temp);

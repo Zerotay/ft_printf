@@ -2,16 +2,20 @@
 
 int 	checkflag(const char *s, int *i)
 {
-	if (s[*i] == '-')
-	{
-		(*i)++;
-		return (1);
-	}
-	else if (s[*i] == '0')
-	{
-		(*i)++;
-		return (2);
-	}
+	int	forzero;
+	int forsort;
+
+	forzero = 0;
+	forsort = 0;
+	while (s[*i] == '-' || s[*i] == '0')
+		if (s[(*i)++] == '-')
+			forsort = 1;
+		else
+			forzero = 2;
+	if (forsort)
+		return (forsort);
+	if (forzero)
+		return (forzero);
 	return (0);
 }
 

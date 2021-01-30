@@ -32,5 +32,6 @@ char		*ft_itoa(int n);
 size_t		ft_strlcpy(char *dst, const char *src, size_t dstsize);
 void		*ft_calloc(size_t count, size_t size);
 void	*ft_memset(void *b, int c, size_t len);
+int		ft_isdigit(int c);
 
 #endif

@@ -54,8 +54,10 @@ int	ft_printf(const char *s, ...)
 
 // int main()
 // {
-// 	char *num = "123456";
-// 		ft_printf("[%1s]\n",num);
-// 		printf("[%1s]\n",num);
+
+// 	char *s = "[%0*.*i]\n";
+// 	int num = 8;
+// 		ft_printf(s, 4, 0, num);
+// 		printf(s, 4, 0, num);
 // 	return (0);
 // }

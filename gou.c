@@ -85,27 +85,6 @@ static int	sort(t_cfc cfc, int val, int len)
 	return (cfc.width);
 }
 
-static int zero(t_cfc cfc, int val, int len)
-{
-	char	*buf;
-	char	*temp;
-	int		i;
-
-	i = 0;
-	if (!(buf = (char *)malloc(sizeof(char) * (cfc.width + 1))))
-		return (-1);
-	buf[cfc.width] = 0;
-	if (!(temp = itoud(val)))
-		return (-1);
-	while (i < cfc.width - len)
-		buf[i++] = '0';
-	ft_strlcpy(buf + i, temp, len + 1);
-	write(1, buf, ft_strlen(buf));
-	free(buf);
-	free(temp);
-	return (cfc.width);
-}
-
 static int	basic(t_cfc cfc, int val, int len)
 {
 	char	*buf;
@@ -132,6 +111,29 @@ static int	basic(t_cfc cfc, int val, int len)
 			buf[i++] = ' ';
 		ft_strlcpy(buf + i, temp, len + 1);
 	}
+	write(1, buf, ft_strlen(buf));
+	free(buf);
+	free(temp);
+	return (cfc.width);
+}
+
+static int zero(t_cfc cfc, int val, int len)
+{
+	char	*buf;
+	char	*temp;
+	int		i;
+
+	if (cfc.onlyfors && cfc.precision >= 0)
+		return (basic(cfc, val, len));
+	i = 0;
+	if (!(buf = (char *)malloc(sizeof(char) * (cfc.width + 1))))
+		return (-1);
+	buf[cfc.width] = 0;
+	if (!(temp = itoud(val)))
+		return (-1);
+	while (i < cfc.width - len)
+		buf[i++] = '0';
+	ft_strlcpy(buf + i, temp, len + 1);
 	write(1, buf, ft_strlen(buf));
 	free(buf);
 	free(temp);
