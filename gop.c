@@ -70,13 +70,15 @@ int			onlyfornil(t_cfc cfc)
 static int	onlyfornulp(t_cfc cfc)
 {
 	char	*buf;
+	int		i;
 
+	i = cfc.sort1zero2 == 1 ? 0 : cfc.width - 6;
 	if (cfc.width > 6)
 	{
 		if (!(buf = ft_calloc(cfc.width + 1, 1)))
 			return (-1);
 		ft_memset(buf, ' ', cfc.width);
-		ft_strlcpy(buf + (cfc.sort1zero2 == 1 ? 0 : cfc.width - 6), "(null)", 7);
+		ft_strlcpy(buf + i, "(null)", 7);
 		buf[6] = cfc.sort1zero2 == 1 ? ' ' : buf[6];
 		write(1, buf, ft_strlen(buf));
 		free(buf);
