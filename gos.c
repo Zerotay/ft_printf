@@ -51,14 +51,18 @@ static int	onlyfornulls(t_cfc cfc)
 			return (write(1, "(null)", len));
 		else
 		{
-			if (!(buf = ft_calloc(cfc.width + 1, 1)))
-				return (-1);
-			ft_memset(buf, ' ', cfc.width);
-			ft_strlcpy(buf + (cfc.sort1zero2 == 1 ? 0 : cfc.width - len), "(null)", len + 1);
-			buf[len] = cfc.sort1zero2 == 1 ? ' ' : buf[len];
-			write(1, buf, ft_strlen(buf));
-			free(buf);
-			return (cfc.width);
+			if (cfc.sort1zero2 == 1)
+				return (sorts(cfc, "(null)", 6));
+			else
+				return (basic(cfc, "(null)", 6));
+			// if (!(buf = ft_calloc(cfc.width + 1, 1)))
+			// 	return (-1);
+			// ft_memset(buf, ' ', cfc.width);
+			// ft_strlcpy(buf + (cfc.sort1zero2 == 1 ? 0 : cfc.width - len), "(null)", len + 1);
+			// buf[len] = cfc.sort1zero2 == 1 ? ' ' : buf[len];
+			// write(1, buf, ft_strlen(buf));
+			// free(buf);
+			// return (cfc.width);
 		}
 	else if (cfc.width <= 6)
 		return (write(1, "(null)", 6));
