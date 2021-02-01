@@ -50,10 +50,8 @@ char	checkspec(const char *s, int i)
 	return (0);
 }
 
-t_cfc	makecfc(const char *s, int *i, t_cfc cfc, va_list ap)
+t_cfc	checkwidth(const char *s, int *i, t_cfc cfc, va_list ap)
 {
-	(*i)++;
-	cfc.sort1zero2 = checkflag(s, i);
 	if ((cfc.width = ft_atoi(s + *i)))
 		*i += skipnum(s + *i);
 	else if (s[*i] == '*')
@@ -65,6 +63,14 @@ t_cfc	makecfc(const char *s, int *i, t_cfc cfc, va_list ap)
 		}
 		(*i)++;
 	}
+	return (cfc);
+}
+
+t_cfc	makecfc(const char *s, int *i, t_cfc cfc, va_list ap)
+{
+	(*i)++;
+	cfc.sort1zero2 = checkflag(s, i);
+	cfc = checkwidth(s, i, cfc, ap);
 	if (s[*i] == '.')
 	{
 		(*i)++;

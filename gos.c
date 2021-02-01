@@ -72,7 +72,6 @@ int			gos(t_cfc cfc, va_list ap)
 	len = (int)ft_strlen(val);
 	if (cfc.precision < (int)ft_strlen(val))
 		len = cfc.precision;
-	// len = cfc.precision < (int)ft_strlen(val) ? cfc.precision : (int)ft_strlen(val);
 	if (cfc.onlyfors)
 		if (cfc.width <= len)
 			return (write(1, val, len));
