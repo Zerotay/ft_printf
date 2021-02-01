@@ -83,7 +83,7 @@ static int	onlyfornulp(t_cfc cfc)
 		return (cfc.width);
 	}
 	else
-	return (write(1, "(null)", 6));
+		return (write(1, "(null)", 6));
 }
 
 int			gop(t_cfc cfc, va_list ap)
@@ -99,9 +99,8 @@ int			gop(t_cfc cfc, va_list ap)
 	len = lengthplus(cfc, val) + 2;
 	if (cfc.width <= len)
 		return (justwrite(cfc, val));
+	else if (cfc.sort1zero2 == 1)
+		return (sortp(cfc, val, len));
 	else
-		if (cfc.sort1zero2 == 1)
-			return (sortp(cfc, val, len));
-		else
-			return (basic(cfc, val, len));
+		return (basic(cfc, val, len));
 }

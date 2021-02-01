@@ -15,7 +15,7 @@
 static int	sorts(t_cfc cfc, char *val, int len)
 {
 	char	*buf;
-	
+
 	if (!(buf = ft_calloc(cfc.width + 1, 1)))
 		return (-1);
 	ft_memset(buf, ' ', cfc.width);
@@ -61,12 +61,11 @@ static int	onlyfornulls(t_cfc cfc)
 			return (cfc.width);
 		}
 	else if (cfc.width <= 6)
-			return (write(1, "(null)", 6));
+		return (write(1, "(null)", 6));
+	else if (cfc.sort1zero2 == 1)
+		return (sorts(cfc, "(null)", 6));
 	else
-		if (cfc.sort1zero2 == 1)
-			return (sorts(cfc, "(null)", 6));
-		else
-			return (basic(cfc, "(null)", 6));
+		return (basic(cfc, "(null)", 6));
 }
 
 int			gos(t_cfc cfc, va_list ap)
@@ -82,17 +81,14 @@ int			gos(t_cfc cfc, va_list ap)
 	if (cfc.onlyfors)
 		if (cfc.width <= len)
 			return (write(1, val, len));
+		else if (cfc.sort1zero2 == 1)
+			return (sorts(cfc, val, len));
 		else
-			if (cfc.sort1zero2 == 1)
-				return (sorts(cfc, val, len));
-			else
-				return (basic(cfc, val, len));		
+			return (basic(cfc, val, len));
+	else if (cfc.width <= (int)ft_strlen(val))
+		return (write(1, val, ft_strlen(val)));
+	else if (cfc.sort1zero2 == 1)
+		return (sorts(cfc, val, ft_strlen(val)));
 	else
-		if (cfc.width <= (int)ft_strlen(val))
-			return (write(1, val, ft_strlen(val)));
-		else
-			if (cfc.sort1zero2 == 1)
-				return (sorts(cfc, val, ft_strlen(val)));
-			else
-				return (basic(cfc, val, ft_strlen(val)));
+		return (basic(cfc, val, ft_strlen(val)));
 }
