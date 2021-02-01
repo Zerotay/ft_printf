@@ -81,13 +81,12 @@ int			gou(t_cfc cfc, va_list ap)
 			return (precisionlong(cfc, val, len));
 		else
 			return (justwrite(cfc, val));
+	else if (cfc.precision >= cfc.width)
+		return (precisionlong(cfc, val, len));
+	else if (cfc.sort1zero2 == 1)
+		return (sort(cfc, val, len));
+	else if (cfc.sort1zero2 == 2)
+		return (zero(cfc, val, len));
 	else
-		if (cfc.precision >= cfc.width)
-			return (precisionlong(cfc, val, len));
-		else if (cfc.sort1zero2 == 1)
-			return (sort(cfc, val, len));
-		else if (cfc.sort1zero2 == 2)
-			return (zero(cfc, val, len));
-		else
-			return (basic(cfc, val, len));
+		return (basic(cfc, val, len));
 }

@@ -69,12 +69,11 @@ int			goc(t_cfc cfc, va_list ap)
 	val = va_arg(ap, int);
 	if (val == '\0')
 		return (onlyforshit(cfc));
-	else
-		if (cfc.width > 1)
-			if (cfc.sort1zero2 == 1)
-				return (sortc(cfc, val));
-			else
-				return (basic(cfc, val));
+	else if (cfc.width > 1)
+		if (cfc.sort1zero2 == 1)
+			return (sortc(cfc, val));
 		else
-			return (write(1, &val, 1));
+			return (basic(cfc, val));
+	else
+		return (write(1, &val, 1));
 }

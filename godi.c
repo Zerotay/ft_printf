@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-static int		basic(t_cfc cfc, int val, int len)
+static int	basic(t_cfc cfc, int val, int len)
 {
 	char	*buf;
 	char	*temp;
@@ -28,7 +28,7 @@ static int		basic(t_cfc cfc, int val, int len)
 	{
 		ft_memset(buf + cfc.width - cfc.precision, '0', cfc.precision);
 		buf[cfc.width - i - 1] = val < 0 ? '-' : buf[cfc.width - i - 1];
-	}	
+	}
 	len = length(val);
 	i = cfc.width - len;
 	ft_strlcpy(buf + i, temp, len + 1);
