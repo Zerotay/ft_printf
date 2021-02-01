@@ -6,7 +6,7 @@
 /*   By: dongguki <dongguki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 15:44:08 by dongguki          #+#    #+#             */
-/*   Updated: 2021/02/01 20:00:59 by dongguki         ###   ########.fr       */
+/*   Updated: 2021/02/01 23:13:27 by dongguki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,7 @@ size_t			ft_strlcpy(char *dst, const char *src, size_t dstsize);
 void			*ft_calloc(size_t count, size_t size);
 void			*ft_memset(void *b, int c, size_t len);
 int				ft_isdigit(int c);
+char			*ft_strdup(const char *s);
+char			*ft_strjoin(char const *s1, char const *s2);
 
 #endif

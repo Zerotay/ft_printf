@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongguki <dongguki@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: dongguki <dongguki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 14:30:04 by dongguki          #+#    #+#             */
-/*   Updated: 2021/01/30 14:30:04 by dongguki         ###   ########.fr       */
+/*   Updated: 2021/02/02 00:01:59 by dongguki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,15 @@ t_cfc	zeroinit(t_cfc cfc)
 	return (cfc);
 }
 
-int		ft_printf(const char *s, ...)
+int ft_vprintf(const char *s, va_list ap)
 {
-	int		ret;
 	t_cfc	cfc;
-	va_list	ap;
 	int		i;
 	int		err;
+	int		ret;
 
-	ret = 0;
 	i = -1;
-	va_start(ap, s);
+	ret = 0;
 	while (s[++i])
 	{
 		if (s[i] == '%')
@@ -42,11 +40,23 @@ int		ft_printf(const char *s, ...)
 			if ((err = print(cfc, ap)) < 0)
 				return (-1);
 			ret += err;
+			if (!s[i])
+				return (0);
 			continue;
 		}
 		write(1, &s[i], 1);
 		ret++;
 	}
+	return (ret);
+}
+
+int		ft_printf(const char *s, ...)
+{
+	int		ret;
+	va_list	ap;
+
+	va_start(ap, s);
+	ret = ft_vprintf(s, ap);
 	va_end(ap);
 	return (ret);
 }
