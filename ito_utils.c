@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ito_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongguki <dongguki@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: dongguki <dongguki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 01:23:19 by dongguki          #+#    #+#             */
-/*   Updated: 2021/02/01 01:23:19 by dongguki         ###   ########.fr       */
+/*   Updated: 2021/02/01 22:43:38 by dongguki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*itop(unsigned long n)
 		i++;
 	if (!(ans = ft_calloc((i + 1), 1)))
 		return (0);
-	ans[0] = '0';
+	ans[2] = '0';
 	while (j)
 	{
 		n = j % 16;
