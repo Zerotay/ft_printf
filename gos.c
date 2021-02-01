@@ -49,9 +49,9 @@ static int	onlyfornulls(t_cfc cfc)
 		if (len >= cfc.width)
 			return (write(1, "(null)", len));
 		else if (cfc.sort1zero2 == 1)
-			return (sorts(cfc, "(null)", 6));
+			return (sorts(cfc, "(null)", len));
 		else
-			return (basic(cfc, "(null)", 6));
+			return (basic(cfc, "(null)", len));
 	else if (cfc.width <= 6)
 		return (write(1, "(null)", 6));
 	else if (cfc.sort1zero2 == 1)
