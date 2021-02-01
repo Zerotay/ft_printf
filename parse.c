@@ -3,7 +3,7 @@
 int 	checkflag(const char *s, int *i)
 {
 	int	forzero;
-	int forsort;
+	int	forsort;
 
 	forzero = 0;
 	forsort = 0;
@@ -40,10 +40,9 @@ char	checkspec(const char *s, int i)
 
 t_cfc	makecfc(const char *s, int *i, t_cfc cfc, va_list ap)
 {
-	//만약 예외 처리를 하고 싶다면 여기에서 해야 함
 	(*i)++;
 	cfc.sort1zero2 = checkflag(s, i);
-	if ((cfc.width = ft_atoi(s + *i))) //만약 *와 숫자 나오는 거 고려? 순서 바꿔서
+	if ((cfc.width = ft_atoi(s + *i)))
 		*i += skipnum(s + *i);
 	else if (s[*i] == '*')
 	{
