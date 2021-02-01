@@ -47,6 +47,7 @@ int		sort(t_cfc cfc, int val, int len)
 	if (!(buf = ft_calloc(cfc.width + 1, 1)))
 		return (-1);
 	if (!(temp = checkito(cfc, val)))
+		return (-1);
 	if (cfc.precision >= len)
 		ft_memset(buf, '0', cfc.width);
 	ft_strlcpy(buf + i, temp, len + 1);
