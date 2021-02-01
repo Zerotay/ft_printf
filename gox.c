@@ -28,7 +28,6 @@ static int	basic(t_cfc cfc, int val, int len)
 		ft_memset(buf + cfc.width - cfc.precision, '0', cfc.precision);
 	i = cfc.width - len;
 	ft_strlcpy(buf + i, temp, len + 1);
-	buf[i] = ((val < 0) && (cfc.precision >= len)) ? '0' : buf[i];
 	write(1, buf, ft_strlen(buf));
 	free(buf);
 	free(temp);

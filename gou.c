@@ -19,25 +19,15 @@ static int	basic(t_cfc cfc, int val, int len)
 	int		i;
 
 	i = 0;
-	if (!(buf = (char *)malloc(sizeof(char) * (cfc.width + 1))))
+	if (!(buf = ft_calloc(cfc.width + 1, 1)))
 		return (-1);
-	buf[cfc.width] = 0;
-	if (!(temp = itoplus(cfc, val)))
+	if (!(temp = checkito(cfc, val)))
 		return (-1);
+	ft_memset(buf, ' ', cfc.width);
 	if (cfc.precision >= len)
-	{
-		while (i < cfc.width - cfc.precision)
-			buf[i++] = ' ';
-		while (cfc.precision-- - len)
-			buf[i++] = '0';
-		ft_strlcpy(buf + i, temp, len + 1);
-	}
-	else
-	{
-		while (i < cfc.width - len)
-			buf[i++] = ' ';
-		ft_strlcpy(buf + i, temp, len + 1);
-	}
+		ft_memset(buf + cfc.width - cfc.precision, '0', cfc.precision);
+	i = cfc.width - len;
+	ft_strlcpy(buf + i, temp, len + 1);
 	write(1, buf, ft_strlen(buf));
 	free(buf);
 	free(temp);
