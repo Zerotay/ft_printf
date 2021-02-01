@@ -39,7 +39,6 @@ int	ft_printf(const char *s, ...)
 		{
 			cfc = zeroinit(cfc);
 			cfc = makecfc(s, &i, cfc, ap);
-			// printf("flag %d wid %d pre %d spec %c\n", cfc.sort1zero2, cfc.width, cfc.precision, cfc.spec);
 			if ((err = print(cfc, ap)) < 0)
 				return (-1);
 			ret += err;
@@ -51,13 +50,3 @@ int	ft_printf(const char *s, ...)
 	va_end(ap);
 	return (ret);
 }
-
-// int main()
-// {
-
-// 	char *s = "[%0*.*i]\n";
-// 	int num = 8;
-// 		ft_printf(s, 4, 0, num);
-// 		printf(s, 4, 0, num);
-// 	return (0);
-// }

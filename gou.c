@@ -1,89 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   gou.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dongguki <dongguki@student.42seoul.kr>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/01 13:01:46 by dongguki          #+#    #+#             */
+/*   Updated: 2021/02/01 13:01:46 by dongguki         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
-
-static int checklen(unsigned int val)
-{
-	int	i;
-
-	if (val == 0)
-		return (1);
-	i = 0;
-	while (val)
-	{	
-		i++;
-		val /= 10;
-	}
-	return (i);
-}
-
-char		*itoud(unsigned int n)
-{
-	char	*ans;
-	size_t	i;
-	unsigned int		j;
-
-	i = 1;
-	j = n;
-	while (n /= 10)
-		i++;
-	if (!(ans = ft_calloc((i + 1), 1)))
-		return (0);
-	ans[i] = 0;
-	ans[0] = '0';
-	while (j)
-	{
-		n = j % 10;
-		ans[--i] = '0' + n;
-		j /= 10;
-	}
-	return (ans);
-}
-
-
-static int	precisionlong(t_cfc cfc, int val, int len)
-{
-	char	*buf;
-	char	*temp;
-	int		i;
-	int		ret;
-
-	i = 0;
-	if (!(buf = ft_calloc(cfc.precision + 1, 1)) || !(temp = itoud(val)))
-		return (-1);
-	while (cfc.precision-- - len)
-		buf[i++] = '0';
-	ft_strlcpy(buf + i, temp, len + 1);
-	ret = write(1, buf, ft_strlen(buf));
-	free(temp);
-	free(buf);
-	return (ret);
-}
-
-static int	sort(t_cfc cfc, int val, int len)
-{
-	char	*buf;
-	char	*temp;
-	int		i;
-	int		zero;
-
-	i = 0;
-	if (!(buf = ft_calloc(cfc.width + 1, 1)) || !(temp = itoud(val)))
-		return (-1);
-	if (cfc.precision >= len)
-	{
-		zero = cfc.precision - len;
-		while (zero--)
-			buf[i++] = '0';
-	}
-	ft_strlcpy(buf + i, temp, len + 1);	
-	i = cfc.precision >= len ? cfc.precision : len;
-	while (i < cfc.width)
-		buf[i++] = ' ';
-	buf[cfc.width] = 0;
-	write(1, buf, ft_strlen(buf));
-	free(buf);
-	free(temp);	
-	return (cfc.width);
-}
 
 static int	basic(t_cfc cfc, int val, int len)
 {
@@ -95,7 +22,7 @@ static int	basic(t_cfc cfc, int val, int len)
 	if (!(buf = (char *)malloc(sizeof(char) * (cfc.width + 1))))
 		return (-1);
 	buf[cfc.width] = 0;
-	if (!(temp = itoud(val)))
+	if (!(temp = itoplus(cfc, val)))
 		return (-1);
 	if (cfc.precision >= len)
 	{
@@ -117,7 +44,7 @@ static int	basic(t_cfc cfc, int val, int len)
 	return (cfc.width);
 }
 
-static int zero(t_cfc cfc, int val, int len)
+static int	zero(t_cfc cfc, int val, int len)
 {
 	char	*buf;
 	char	*temp;
@@ -129,7 +56,7 @@ static int zero(t_cfc cfc, int val, int len)
 	if (!(buf = (char *)malloc(sizeof(char) * (cfc.width + 1))))
 		return (-1);
 	buf[cfc.width] = 0;
-	if (!(temp = itoud(val)))
+	if (!(temp = itoplus(cfc, val)))
 		return (-1);
 	while (i < cfc.width - len)
 		buf[i++] = '0';
@@ -140,25 +67,13 @@ static int zero(t_cfc cfc, int val, int len)
 	return (cfc.width);
 }
 
-static int	onlyfornull(t_cfc cfc)
-{
-	char *buf;
-
-	if (!(buf = ft_calloc(cfc.width + 1, 1)))
-		return (0);
-	ft_memset(buf, ' ', cfc.width);
-	write(1, buf, cfc.width);
-	free(buf);
-	return (cfc.width);
-}
-
-int	gou(t_cfc cfc, va_list ap)
+int			gou(t_cfc cfc, va_list ap)
 {
 	unsigned int	val;
-	int	len;
+	int				len;
 
 	val = va_arg(ap, unsigned int);
-	len = checklen(val);
+	len = lengthplus(cfc, val);
 	if (!val && !cfc.precision)
 		return (onlyfornull(cfc));
 	else
@@ -166,7 +81,7 @@ int	gou(t_cfc cfc, va_list ap)
 			if (cfc.precision >= len)
 				return (precisionlong(cfc, val, len));
 			else
-				return (write(1, itoud(val), len));
+				return (justwrite(cfc, val));
 		else
 			if (cfc.precision >= cfc.width)
 				return (precisionlong(cfc, val, len));

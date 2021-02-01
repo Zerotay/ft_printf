@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   goc.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dongguki <dongguki@student.42seoul.kr>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/01 13:03:48 by dongguki          #+#    #+#             */
+/*   Updated: 2021/02/01 13:03:48 by dongguki         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-static int sort(t_cfc cfc, char val)
+static int	sortc(t_cfc cfc, char val)
 {
 	char	*buf;
 	int		i;
@@ -16,7 +28,7 @@ static int sort(t_cfc cfc, char val)
 	return (cfc.width);
 }
 
-static int basic(t_cfc cfc, char val)
+static int	basic(t_cfc cfc, char val)
 {
 	char	*buf;
 	int		i;
@@ -31,17 +43,37 @@ static int basic(t_cfc cfc, char val)
 	free(buf);
 	return (cfc.width);
 }
+int			onlyforshit(t_cfc cfc)
+{
+	char	*buf;
 
-int goc(t_cfc cfc, va_list ap)
+	if (cfc.width > 1)
+	{
+		if (!(buf = ft_calloc(cfc.width + 1, 1)))
+			return (-1);
+		ft_memset(buf, ' ', cfc.width);
+		buf[(cfc.sort1zero2 == 1 ? 0 : cfc.width - 1)] = '\0';
+		write(1, buf, cfc.width);
+		free(buf);
+		return (cfc.width);
+	}
+	else
+		return (write(1, "\0", 1));
+}
+
+int			goc(t_cfc cfc, va_list ap)
 {
 	char	val;
 
 	val = va_arg(ap, int);
-	if (cfc.width > 1)
-		if (cfc.sort1zero2 == 1)
-			return (sort(cfc, val));
-		else
-			return (basic(cfc, val));
+	if (val == '\0')
+		return (onlyforshit(cfc));
 	else
-		return (write(1, &val, 1));
+		if (cfc.width > 1)
+			if (cfc.sort1zero2 == 1)
+				return (sortc(cfc, val));
+			else
+				return (basic(cfc, val));
+		else
+			return (write(1, &val, 1));
 }
