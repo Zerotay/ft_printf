@@ -41,7 +41,6 @@ static int	basic(t_cfc cfc, char *val, int len)
 
 static int	onlyfornulls(t_cfc cfc)
 {
-	char	*buf;
 	int		len;
 
 	len = cfc.precision < 6 ? cfc.precision : 6;
@@ -49,21 +48,10 @@ static int	onlyfornulls(t_cfc cfc)
 	if (cfc.onlyfors)
 		if (len >= cfc.width)
 			return (write(1, "(null)", len));
+		else if (cfc.sort1zero2 == 1)
+			return (sorts(cfc, "(null)", 6));
 		else
-		{
-			if (cfc.sort1zero2 == 1)
-				return (sorts(cfc, "(null)", 6));
-			else
-				return (basic(cfc, "(null)", 6));
-			// if (!(buf = ft_calloc(cfc.width + 1, 1)))
-			// 	return (-1);
-			// ft_memset(buf, ' ', cfc.width);
-			// ft_strlcpy(buf + (cfc.sort1zero2 == 1 ? 0 : cfc.width - len), "(null)", len + 1);
-			// buf[len] = cfc.sort1zero2 == 1 ? ' ' : buf[len];
-			// write(1, buf, ft_strlen(buf));
-			// free(buf);
-			// return (cfc.width);
-		}
+			return (basic(cfc, "(null)", 6));
 	else if (cfc.width <= 6)
 		return (write(1, "(null)", 6));
 	else if (cfc.sort1zero2 == 1)
@@ -81,7 +69,10 @@ int			gos(t_cfc cfc, va_list ap)
 	if (!val)
 		return (onlyfornulls(cfc));
 	cfc.onlyfors = cfc.precision < 0 ? 0 : cfc.onlyfors;
-	len = cfc.precision < (int)ft_strlen(val) ? cfc.precision : (int)ft_strlen(val);
+	len = (int)ft_strlen(val);
+	if (cfc.precision < (int)ft_strlen(val))
+		len = cfc.precision;
+	// len = cfc.precision < (int)ft_strlen(val) ? cfc.precision : (int)ft_strlen(val);
 	if (cfc.onlyfors)
 		if (cfc.width <= len)
 			return (write(1, val, len));
