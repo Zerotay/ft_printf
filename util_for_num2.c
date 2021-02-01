@@ -20,9 +20,10 @@ int		precisionlong(t_cfc cfc, int val, int len)
 	int		ret;
 
 	i = 0;
-	if (!(buf = ft_calloc(cfc.precision + 1,1)) || !(temp = checkito(cfc, val)))
+	if (!(buf = ft_calloc(cfc.precision + 1, 1)))
 		return (-1);
-	buf[cfc.precision] = 0;
+	if (!(temp = checkito(cfc, val)))
+		return (-1);
 	if (val < 0)
 		buf[i++] = '-';
 	while (cfc.precision-- - len)
@@ -43,8 +44,9 @@ int		sort(t_cfc cfc, int val, int len)
 
 	i = cfc.precision >= len ? cfc.precision - len : 0;
 	i = (cfc.precision >= len && val < 0) ? i + 1 : i;
-	if (!(buf = ft_calloc(cfc.width + 1, 1)) || !(temp = checkito(cfc, val)))
+	if (!(buf = ft_calloc(cfc.width + 1, 1)))
 		return (-1);
+	if (!(temp = checkito(cfc, val)))
 	if (cfc.precision >= len)
 		ft_memset(buf, '0', cfc.width);
 	ft_strlcpy(buf + i, temp, len + 1);
@@ -55,6 +57,6 @@ int		sort(t_cfc cfc, int val, int len)
 	buf[0] = val < 0 ? '-' : buf[0];
 	write(1, buf, ft_strlen(buf));
 	free(buf);
-	free(temp);	
+	free(temp);
 	return (cfc.width);
 }

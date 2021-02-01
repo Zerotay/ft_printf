@@ -43,6 +43,7 @@ static int	basic(t_cfc cfc, char val)
 	free(buf);
 	return (cfc.width);
 }
+
 int			onlyforshit(t_cfc cfc)
 {
 	char	*buf;

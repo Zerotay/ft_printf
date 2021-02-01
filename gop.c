@@ -17,7 +17,9 @@ static int	sortp(t_cfc cfc, unsigned long val, int len)
 	char	*buf;
 	char	*temp;
 
-	if (!(buf = ft_calloc(cfc.width + 1, 1)) || !(temp = itop(val)))
+	if (!(buf = ft_calloc(cfc.width + 1, 1)))
+		return (-1);
+	if (!(temp = itop(val)))
 		return (-1);
 	ft_memset(buf, ' ', cfc.width);
 	ft_strlcpy(buf, temp, len + 1);
@@ -34,7 +36,9 @@ static int	basic(t_cfc cfc, unsigned long val, int len)
 	char	*buf;
 	char	*temp;
 
-	if (!(buf = ft_calloc(cfc.width + 1, 1)) || !(temp = itop(val)))
+	if (!(buf = ft_calloc(cfc.width + 1, 1)))
+		return (-1);
+	if (!(temp = itop(val)))
 		return (-1);
 	ft_memset(buf, ' ', cfc.width);
 	ft_strlcpy(buf + (cfc.width - len), temp, len + 1);
@@ -50,7 +54,7 @@ int			onlyfornil(t_cfc cfc)
 
 	if (cfc.width > 5)
 	{
-		if(!(buf = ft_calloc(cfc.width + 1, 1)))
+		if (!(buf = ft_calloc(cfc.width + 1, 1)))
 			return (-1);
 		ft_memset(buf, ' ', cfc.width);
 		ft_strlcpy(buf + (cfc.sort1zero2 == 1 ? 0 : cfc.width - 5), "(nil)", 6);
@@ -69,7 +73,7 @@ static int	onlyfornulp(t_cfc cfc)
 
 	if (cfc.width > 6)
 	{
-		if(!(buf = ft_calloc(cfc.width + 1, 1)))
+		if (!(buf = ft_calloc(cfc.width + 1, 1)))
 			return (-1);
 		ft_memset(buf, ' ', cfc.width);
 		ft_strlcpy(buf + (cfc.sort1zero2 == 1 ? 0 : cfc.width - 6), "(null)", 7);
@@ -79,7 +83,7 @@ static int	onlyfornulp(t_cfc cfc)
 		return (cfc.width);
 	}
 	else
-	 return (write(1, "(null)", 6));
+	return (write(1, "(null)", 6));
 }
 
 int			gop(t_cfc cfc, va_list ap)

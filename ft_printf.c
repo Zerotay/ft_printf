@@ -22,7 +22,7 @@ t_cfc	zeroinit(t_cfc cfc)
 	return (cfc);
 }
 
-int	ft_printf(const char *s, ...)
+int		ft_printf(const char *s, ...)
 {
 	int		ret;
 	t_cfc	cfc;

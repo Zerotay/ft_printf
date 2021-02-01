@@ -6,7 +6,7 @@
 /*   By: dongguki <dongguki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 12:11:09 by dongguki          #+#    #+#             */
-/*   Updated: 2020/12/06 22:23:36 by dongguki         ###   ########.fr       */
+/*   Updated: 2021/02/01 14:13:55 by dongguki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static void		stop(char **ans, size_t i)
 	free(ans);
 }
 
-static char			**make(char const *s, char c, char **ans, size_t wc)
+static char		**make(char const *s, char c, char **ans, size_t wc)
 {
 	size_t		i;
 	size_t		j;

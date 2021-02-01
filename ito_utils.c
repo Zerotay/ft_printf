@@ -77,7 +77,8 @@ char	*checkito(t_cfc cfc, int val)
 		return (ret);
 	}
 	else
-	{	if (!(ret = itoplus(cfc, val)))
+	{
+		if (!(ret = itoplus(cfc, val)))
 			return (0);
 		return (ret);
 	}
