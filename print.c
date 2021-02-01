@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongguki <dongguki@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: dongguki <dongguki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 14:09:46 by dongguki          #+#    #+#             */
-/*   Updated: 2021/02/01 14:09:46 by dongguki         ###   ########.fr       */
+/*   Updated: 2021/02/01 20:00:37 by dongguki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,6 @@ int	print(t_cfc cfc, va_list ap)
 	else if (cfc.spec == 'p')
 		return (gop(cfc, ap));
 	else if (cfc.spec == '%')
-	{
-		write(1, "%", 1);
-		return (1);
-	}
+		return (gol(cfc));
 	return (0);
 }

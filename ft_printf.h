@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongguki <dongguki@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: dongguki <dongguki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 15:44:08 by dongguki          #+#    #+#             */
-/*   Updated: 2021/02/01 15:44:08 by dongguki         ###   ########.fr       */
+/*   Updated: 2021/02/01 20:00:59 by dongguki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int				gou(t_cfc cfc, va_list ap);
 int				goc(t_cfc cfc, va_list ap);
 int				gos(t_cfc cfc, va_list ap);
 int				gop(t_cfc cfc, va_list ap);
+int				gol(t_cfc cfc);
 
 char			*itop(unsigned long n);
 char			*itoplus(t_cfc cfc, unsigned int n);
