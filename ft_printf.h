@@ -6,7 +6,7 @@
 /*   By: dongguki <dongguki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 15:44:08 by dongguki          #+#    #+#             */
-/*   Updated: 2021/02/02 15:16:36 by dongguki         ###   ########.fr       */
+/*   Updated: 2021/02/02 16:04:42 by dongguki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,11 @@ int				gos(t_cfc cfc, va_list ap);
 int				gop(t_cfc cfc, va_list ap);
 int				gol(t_cfc cfc);
 
-char			*itop(unsigned long long n);
+char			*itop(unsigned long n);
 char			*itoplus(t_cfc cfc, unsigned int n);
 char			*checkito(t_cfc cfc, int val);
 
-int				lengthplus(t_cfc cfc, unsigned long long val);
+int				lengthplus(t_cfc cfc, unsigned long val);
 int				length(int val);
 
 int				justwrite(t_cfc cfc, unsigned long val);
