@@ -6,7 +6,7 @@
 /*   By: dongguki <dongguki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 13:04:36 by dongguki          #+#    #+#             */
-/*   Updated: 2021/02/02 12:44:24 by dongguki         ###   ########.fr       */
+/*   Updated: 2021/02/02 14:39:31 by dongguki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	sorts(t_cfc cfc, char *val, int len)
 	return (cfc.width);
 }
 
-static int	zero(t_cfc cfc, char *val, int len)
+static int	zeros(t_cfc cfc, char *val, int len)
 {
 	char	*buf;
 
@@ -39,7 +39,7 @@ static int	zero(t_cfc cfc, char *val, int len)
 	return (cfc.width);
 }
 
-static int	basic(t_cfc cfc, char *val, int len)
+static int	basics(t_cfc cfc, char *val, int len)
 {
 	char	*buf;
 
@@ -64,13 +64,13 @@ static int	onlyfornulls(t_cfc cfc)
 		else if (cfc.sort1zero2 == 1)
 			return (sorts(cfc, "(null)", len));
 		else
-			return (basic(cfc, "(null)", len));
+			return (basics(cfc, "(null)", len));
 	else if (cfc.width <= 6)
 		return (write(1, "(null)", 6));
 	else if (cfc.sort1zero2 == 1)
 		return (sorts(cfc, "(null)", 6));
 	else
-		return (basic(cfc, "(null)", 6));
+		return (basics(cfc, "(null)", 6));
 }
 
 int			gos(t_cfc cfc, va_list ap)
@@ -91,13 +91,13 @@ int			gos(t_cfc cfc, va_list ap)
 		else if (cfc.sort1zero2 == 1)
 			return (sorts(cfc, val, len));
 		else
-			return (basic(cfc, val, len));
+			return (basics(cfc, val, len));
 	else if (cfc.width <= (int)ft_strlen(val))
 		return (write(1, val, ft_strlen(val)));
 	else if (cfc.sort1zero2 == 1)
 		return (sorts(cfc, val, ft_strlen(val)));
 	else if (cfc.sort1zero2 == 2)
-		return (zero(cfc, val, ft_strlen(val)));
+		return (zeros(cfc, val, ft_strlen(val)));
 	else
-		return (basic(cfc, val, ft_strlen(val)));
+		return (basics(cfc, val, ft_strlen(val)));
 }

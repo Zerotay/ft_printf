@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   goc.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongguki <dongguki@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: dongguki <dongguki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 13:03:48 by dongguki          #+#    #+#             */
-/*   Updated: 2021/02/01 13:03:48 by dongguki         ###   ########.fr       */
+/*   Updated: 2021/02/02 14:39:33 by dongguki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	sortc(t_cfc cfc, char val)
 	return (cfc.width);
 }
 
-static int	basic(t_cfc cfc, char val)
+static int	basicc(t_cfc cfc, char val)
 {
 	char	*buf;
 	int		i;
@@ -73,7 +73,7 @@ int			goc(t_cfc cfc, va_list ap)
 		if (cfc.sort1zero2 == 1)
 			return (sortc(cfc, val));
 		else
-			return (basic(cfc, val));
+			return (basicc(cfc, val));
 	else
 		return (write(1, &val, 1));
 }

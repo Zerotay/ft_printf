@@ -6,7 +6,7 @@
 /*   By: dongguki <dongguki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 13:07:28 by dongguki          #+#    #+#             */
-/*   Updated: 2021/02/02 12:40:40 by dongguki         ###   ########.fr       */
+/*   Updated: 2021/02/02 15:55:03 by dongguki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,9 @@ int			precisionlongp(t_cfc cfc, int val, int len)
 		return (-1);
 	ft_memset(buf, '0', cfc.precision);
 	ft_strlcpy(buf + (cfc.precision + 2 - len), temp, len + 1);
-	buf[cfc.precision + 3 - len] = '0';
+	// ft_strlcpy(buf + (cfc.precision + 2 - len), temp, len + 1);
+	// buf[cfc.precision + 3 - len] = '0';
+	buf[0] = '0';
 	buf[1] = 'x';
 	ret = write(1, buf, ft_strlen(buf));
 	free(temp);
@@ -36,13 +38,17 @@ static int	sortp(t_cfc cfc, unsigned long val, int len)
 {
 	char	*buf;
 	char	*temp;
+	int		i;
 
+	i = cfc.precision >= len ? cfc.precision - len : 0;
 	if (!(buf = ft_calloc(cfc.width + 1, 1)))
 		return (-1);
 	if (!(temp = itop(val)))
 		return (-1);
+	if (cfc.precision >= len)
+		ft_memset(buf, '0', cfc.width);
+	ft_strlcpy(buf + i, temp, len + 1);
 	ft_memset(buf, ' ', cfc.width);
-	ft_strlcpy(buf, temp, len + 1);
 	buf[len] = cfc.width == len ? 0 : ' ';
 	write(1, buf, ft_strlen(buf));
 	free(buf);
@@ -50,7 +56,7 @@ static int	sortp(t_cfc cfc, unsigned long val, int len)
 	return (cfc.width);
 }
 
-static int	basic(t_cfc cfc, unsigned long val, int len)
+static int	basicp(t_cfc cfc, unsigned long val, int len)
 {
 	char	*buf;
 	char	*temp;
@@ -73,7 +79,7 @@ static int	zerop(t_cfc cfc, unsigned long val, int len)
 	char	*temp;
 
 	if (cfc.onlyfors && cfc.precision >= 0)
-		return (basic(cfc, val, len));
+		return (basicp(cfc, val, len));
 	if (!(buf = ft_calloc(cfc.width + 1, 1)))
 		return (-1);
 	if (!(temp = itop(val)))
@@ -88,16 +94,17 @@ static int	zerop(t_cfc cfc, unsigned long val, int len)
 
 int			gop(t_cfc cfc, va_list ap)
 {
-	unsigned long	val;
-	int				len;
+	long long	val;
+	int					len;
 
-	val = (unsigned long)va_arg(ap, void *);
+	val = (long long)va_arg(ap, void *);
 	if (!val && !cfc.onlyfors)
 		return (onlyfornul(cfc));
 	if (!val)
 		return (onlyfornil(cfc));
-	len = lengthplus(cfc, val) + 2;
-	if (cfc.width < len)
+	len = lengthplus(cfc, val);
+	// len = lengthplus(cfc, val) + 2;
+	if (cfc.width < len + 2)
 		if (cfc.precision >= len)
 			return (precisionlongp(cfc, val, len));
 		else
@@ -109,5 +116,5 @@ int			gop(t_cfc cfc, va_list ap)
 	else if (cfc.sort1zero2 == 2)
 		return (zerop(cfc, val, len));
 	else
-		return (basic(cfc, val, len));
+		return (basicp(cfc, val, len));
 }

@@ -6,25 +6,28 @@
 /*   By: dongguki <dongguki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 01:23:19 by dongguki          #+#    #+#             */
-/*   Updated: 2021/02/01 22:43:38 by dongguki         ###   ########.fr       */
+/*   Updated: 2021/02/02 15:50:58 by dongguki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*itop(unsigned long n)
+char	*itop(unsigned long long n)
 {
-	char			*ans;
-	size_t			i;
-	unsigned long	j;
+	char				*ans;
+	size_t				i;
+	unsigned long long	j;
 
-	i = 3;
+	// i = 3;
+	i = 1;
+	n = n & 8796093022207;
 	j = n;
 	while (n /= 16)
 		i++;
 	if (!(ans = ft_calloc((i + 1), 1)))
 		return (0);
-	ans[2] = '0';
+	ans[0] = '0';
+	// ans[2] = '0';
 	while (j)
 	{
 		n = j % 16;
@@ -34,8 +37,8 @@ char	*itop(unsigned long n)
 			ans[--i] = '0' + n;
 		j /= 16;
 	}
-	ans[0] = '0';
-	ans[1] = 'x';
+	// ans[0] = '0';
+	// ans[1] = 'x';
 	return (ans);
 }
 
