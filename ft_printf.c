@@ -6,7 +6,7 @@
 /*   By: dongguki <dongguki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 14:30:04 by dongguki          #+#    #+#             */
-/*   Updated: 2021/02/02 00:01:59 by dongguki         ###   ########.fr       */
+/*   Updated: 2021/02/02 12:47:29 by dongguki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_cfc	zeroinit(t_cfc cfc)
 	return (cfc);
 }
 
-int ft_vprintf(const char *s, va_list ap)
+int		ft_vprintf(const char *s, va_list ap)
 {
 	t_cfc	cfc;
 	int		i;

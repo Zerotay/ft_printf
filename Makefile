@@ -2,7 +2,7 @@ NAME = libftprintf.a
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 SB = ./ft_printf.c ./goc.c ./godi.c ./gop.c ./gos.c ./gou.c ./gox.c ./goxx.c ./gol.c ./parse.c \
-	./print.c ./ito_utils.c ./length_utils.c ./util_for_num1.c ./util_for_num2.c
+	./print.c ./ito_utils.c ./length_utils.c ./util_for_num1.c ./util_for_num2.c ./onlyforp.c
 OB = $(SB:.c=.o)
 LIB = ar -crv
 LIBFT = ./libft/libft.a

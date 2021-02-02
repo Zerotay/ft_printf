@@ -6,7 +6,7 @@
 /*   By: dongguki <dongguki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 15:44:08 by dongguki          #+#    #+#             */
-/*   Updated: 2021/02/01 23:13:27 by dongguki         ###   ########.fr       */
+/*   Updated: 2021/02/02 12:31:39 by dongguki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,9 @@ int				justwrite(t_cfc cfc, unsigned long val);
 int				onlyfornull(t_cfc cfc);
 int				precisionlong(t_cfc cfc, int val, int len);
 int				sort(t_cfc cfc, int val, int len);
+
+int				onlyfornul(t_cfc cfc);
+int				onlyfornil(t_cfc cfc);
 
 size_t			ft_strlen(const char *s);
 int				ft_atoi(const char *str);

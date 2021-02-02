@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   gos.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongguki <dongguki@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: dongguki <dongguki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 13:04:36 by dongguki          #+#    #+#             */
-/*   Updated: 2021/02/01 13:04:36 by dongguki         ###   ########.fr       */
+/*   Updated: 2021/02/02 12:44:24 by dongguki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,19 @@ static int	sorts(t_cfc cfc, char *val, int len)
 	ft_memset(buf, ' ', cfc.width);
 	ft_strlcpy(buf, val, len + 1);
 	buf[len] = ' ';
+	write(1, buf, ft_strlen(buf));
+	free(buf);
+	return (cfc.width);
+}
+
+static int	zero(t_cfc cfc, char *val, int len)
+{
+	char	*buf;
+
+	if (!(buf = ft_calloc(cfc.width + 1, 1)))
+		return (-1);
+	ft_memset(buf, '0', cfc.width);
+	ft_strlcpy(buf + cfc.width - len, val, len + 1);
 	write(1, buf, ft_strlen(buf));
 	free(buf);
 	return (cfc.width);
@@ -83,6 +96,8 @@ int			gos(t_cfc cfc, va_list ap)
 		return (write(1, val, ft_strlen(val)));
 	else if (cfc.sort1zero2 == 1)
 		return (sorts(cfc, val, ft_strlen(val)));
+	else if (cfc.sort1zero2 == 2)
+		return (zero(cfc, val, ft_strlen(val)));
 	else
 		return (basic(cfc, val, ft_strlen(val)));
 }
