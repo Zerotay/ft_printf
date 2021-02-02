@@ -6,7 +6,7 @@
 /*   By: dongguki <dongguki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 13:07:28 by dongguki          #+#    #+#             */
-/*   Updated: 2021/02/01 23:37:40 by dongguki         ###   ########.fr       */
+/*   Updated: 2021/02/02 12:19:12 by dongguki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	sortp(t_cfc cfc, unsigned long val, int len)
 		return (-1);
 	ft_memset(buf, ' ', cfc.width);
 	ft_strlcpy(buf, temp, len + 1);
-	buf[len] = ' ';
+	buf[len] = cfc.width == len ? 0 : ' ';
 	write(1, buf, ft_strlen(buf));
 	free(buf);
 	free(temp);
@@ -76,6 +76,7 @@ int			onlyfornul(t_cfc cfc)
 		return (-1);
 	ft_memset(buf, ' ', cfc.width);
 	ft_strlcpy(buf + (cfc.sort1zero2 == 1 ? 0 : cfc.width - 3), "0x0", 4);
+	buf[3] = (cfc.sort1zero2 == 1 && cfc.width != 3) ? ' ' : buf[3];
 	write(1, buf, ft_strlen(buf));
 	free(buf);
 	return (cfc.width);
@@ -97,11 +98,13 @@ int			onlyfornil(t_cfc cfc)
 	}
 	else
 	{
+		if (cfc.width < 2)
+			return (write(1, "0x", 2));
 		if (!(buf = ft_calloc(cfc.width + 1, 1)))
 			return (-1);
 		ft_memset(buf, ' ', cfc.width);
-		buf[cfc.width - 2] = '0';
-		buf[cfc.width - 1] = 'x';
+		buf[(cfc.sort1zero2 == 1 ? 0 : cfc.width - 2)] = '0';
+		buf[(cfc.sort1zero2 == 1 ? 1 :cfc.width - 1)] = 'x';
 		write(1, buf, ft_strlen(buf));
 		free(buf);
 		return (cfc.width);
