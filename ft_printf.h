@@ -6,14 +6,13 @@
 /*   By: dongguki <dongguki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 15:44:08 by dongguki          #+#    #+#             */
-/*   Updated: 2021/02/02 13:11:32 by dongguki         ###   ########.fr       */
+/*   Updated: 2021/02/02 13:34:30 by dongguki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# include <stdio.h>
 # include <stdarg.h>
 # include <unistd.h>
 # include <stdlib.h>
