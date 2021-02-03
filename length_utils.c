@@ -6,13 +6,13 @@
 /*   By: dongguki <dongguki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 01:44:21 by dongguki          #+#    #+#             */
-/*   Updated: 2021/02/02 16:05:03 by dongguki         ###   ########.fr       */
+/*   Updated: 2021/02/03 13:57:03 by dongguki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		lengthplus(t_cfc cfc, unsigned long val)
+int	lengthplus(t_cfc cfc, unsigned long val)
 {
 	int	i;
 
@@ -27,7 +27,7 @@ int		lengthplus(t_cfc cfc, unsigned long val)
 	return (i);
 }
 
-int		length(int val)
+int	length(int val)
 {
 	int	i;
 

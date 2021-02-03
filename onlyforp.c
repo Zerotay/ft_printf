@@ -6,13 +6,13 @@
 /*   By: dongguki <dongguki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 12:24:23 by dongguki          #+#    #+#             */
-/*   Updated: 2021/02/02 14:39:30 by dongguki         ###   ########.fr       */
+/*   Updated: 2021/02/03 13:57:10 by dongguki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int			onlyfornul(t_cfc cfc)
+int	onlyfornul(t_cfc cfc)
 {
 	char	*buf;
 
@@ -28,7 +28,7 @@ int			onlyfornul(t_cfc cfc)
 	return (cfc.width);
 }
 
-int			onlyfornil(t_cfc cfc)
+int	onlyfornil(t_cfc cfc)
 {
 	char	*buf;
 

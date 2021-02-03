@@ -6,13 +6,13 @@
 /*   By: dongguki <dongguki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 13:02:37 by dongguki          #+#    #+#             */
-/*   Updated: 2021/02/02 16:01:30 by dongguki         ###   ########.fr       */
+/*   Updated: 2021/02/03 13:56:51 by dongguki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int			gox(t_cfc cfc, va_list ap)
+int	gox(t_cfc cfc, va_list ap)
 {
 	unsigned int	val;
 	int				len;

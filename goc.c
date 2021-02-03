@@ -6,13 +6,13 @@
 /*   By: dongguki <dongguki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 13:03:48 by dongguki          #+#    #+#             */
-/*   Updated: 2021/02/02 14:39:33 by dongguki         ###   ########.fr       */
+/*   Updated: 2021/02/03 13:55:27 by dongguki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	sortc(t_cfc cfc, char val)
+int	sortc(t_cfc cfc, char val)
 {
 	char	*buf;
 	int		i;
@@ -28,7 +28,7 @@ static int	sortc(t_cfc cfc, char val)
 	return (cfc.width);
 }
 
-static int	basicc(t_cfc cfc, char val)
+int	basicc(t_cfc cfc, char val)
 {
 	char	*buf;
 	int		i;
@@ -44,7 +44,7 @@ static int	basicc(t_cfc cfc, char val)
 	return (cfc.width);
 }
 
-int			onlyforshit(t_cfc cfc)
+int	onlyforshit(t_cfc cfc)
 {
 	char	*buf;
 
@@ -62,7 +62,7 @@ int			onlyforshit(t_cfc cfc)
 		return (write(1, "\0", 1));
 }
 
-int			goc(t_cfc cfc, va_list ap)
+int	goc(t_cfc cfc, va_list ap)
 {
 	char	val;
 

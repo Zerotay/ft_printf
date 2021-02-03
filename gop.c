@@ -6,13 +6,13 @@
 /*   By: dongguki <dongguki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 13:07:28 by dongguki          #+#    #+#             */
-/*   Updated: 2021/02/02 16:13:39 by dongguki         ###   ########.fr       */
+/*   Updated: 2021/02/03 13:56:30 by dongguki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int			precisionlongp(t_cfc cfc, int val, int len)
+int	precisionlongp(t_cfc cfc, int val, int len)
 {
 	char	*buf;
 	char	*temp;
@@ -33,7 +33,7 @@ int			precisionlongp(t_cfc cfc, int val, int len)
 	return (ret);
 }
 
-static int	sortp(t_cfc cfc, unsigned long val, int len)
+int	sortp(t_cfc cfc, unsigned long val, int len)
 {
 	char	*buf;
 	char	*temp;
@@ -51,7 +51,7 @@ static int	sortp(t_cfc cfc, unsigned long val, int len)
 	return (cfc.width);
 }
 
-static int	basicp(t_cfc cfc, unsigned long val, int len)
+int	basicp(t_cfc cfc, unsigned long val, int len)
 {
 	char	*buf;
 	char	*temp;
@@ -68,7 +68,7 @@ static int	basicp(t_cfc cfc, unsigned long val, int len)
 	return (cfc.width);
 }
 
-static int	zerop(t_cfc cfc, unsigned long val, int len)
+int	zerop(t_cfc cfc, unsigned long val, int len)
 {
 	char	*buf;
 	char	*temp;
@@ -87,7 +87,7 @@ static int	zerop(t_cfc cfc, unsigned long val, int len)
 	return (cfc.width);
 }
 
-int			gop(t_cfc cfc, va_list ap)
+int	gop(t_cfc cfc, va_list ap)
 {
 	unsigned long		val;
 	int					len;

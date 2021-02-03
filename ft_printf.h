@@ -6,7 +6,7 @@
 /*   By: dongguki <dongguki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 15:44:08 by dongguki          #+#    #+#             */
-/*   Updated: 2021/02/02 16:22:33 by dongguki         ###   ########.fr       */
+/*   Updated: 2021/02/03 13:54:58 by dongguki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,12 @@ typedef struct	s_condition_for_conversion
 
 int				ft_printf(const char *s, ...);
 t_cfc			makecfc(const char *s, int *i, t_cfc cfc, va_list ap);
-int				print(t_cfc cfc, va_list ap);
 
 int				godi(t_cfc cfc, va_list ap);
 int				gox(t_cfc cfc, va_list ap);
-int				goxx(t_cfc cfc, va_list ap);
-int				gou(t_cfc cfc, va_list ap);
 int				goc(t_cfc cfc, va_list ap);
 int				gos(t_cfc cfc, va_list ap);
 int				gop(t_cfc cfc, va_list ap);
-int				gol(t_cfc cfc);
 
 char			*itop(unsigned long n);
 char			*itoplus(t_cfc cfc, unsigned int n);

@@ -6,13 +6,13 @@
 /*   By: dongguki <dongguki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 13:04:36 by dongguki          #+#    #+#             */
-/*   Updated: 2021/02/02 14:39:31 by dongguki         ###   ########.fr       */
+/*   Updated: 2021/02/03 13:56:47 by dongguki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	sorts(t_cfc cfc, char *val, int len)
+int	sorts(t_cfc cfc, char *val, int len)
 {
 	char	*buf;
 
@@ -26,7 +26,7 @@ static int	sorts(t_cfc cfc, char *val, int len)
 	return (cfc.width);
 }
 
-static int	zeros(t_cfc cfc, char *val, int len)
+int	zeros(t_cfc cfc, char *val, int len)
 {
 	char	*buf;
 
@@ -39,7 +39,7 @@ static int	zeros(t_cfc cfc, char *val, int len)
 	return (cfc.width);
 }
 
-static int	basics(t_cfc cfc, char *val, int len)
+int	basics(t_cfc cfc, char *val, int len)
 {
 	char	*buf;
 
@@ -52,7 +52,7 @@ static int	basics(t_cfc cfc, char *val, int len)
 	return (cfc.width);
 }
 
-static int	onlyfornulls(t_cfc cfc)
+int	onlyfornulls(t_cfc cfc)
 {
 	int		len;
 
@@ -73,7 +73,7 @@ static int	onlyfornulls(t_cfc cfc)
 		return (basics(cfc, "(null)", 6));
 }
 
-int			gos(t_cfc cfc, va_list ap)
+int	gos(t_cfc cfc, va_list ap)
 {
 	char	*val;
 	int		len;

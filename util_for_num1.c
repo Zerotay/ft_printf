@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   util_for_num1.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongguki <dongguki@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: dongguki <dongguki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 11:49:35 by dongguki          #+#    #+#             */
-/*   Updated: 2021/02/01 11:49:35 by dongguki         ###   ########.fr       */
+/*   Updated: 2021/02/03 13:57:22 by dongguki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		onlyfornull(t_cfc cfc)
+int	onlyfornull(t_cfc cfc)
 {
 	char *buf;
 
@@ -24,7 +24,7 @@ int		onlyfornull(t_cfc cfc)
 	return (cfc.width);
 }
 
-int		justwrite(t_cfc cfc, unsigned long val)
+int	justwrite(t_cfc cfc, unsigned long val)
 {
 	char	*buf;
 	int		i;
